@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dylan Lennon — Fractional Ops Architect for Founder-Led Businesses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#faf7f2;
+  --bg2:#f3ede0;
+  --bg3:#ece4d2;
+  --ink:#0e0e0c;
+  --ink2:#1a1917;
+  --dark:#0e0e0c;
+  --dark2:#1a1917;
+  --rust:#d95f2e;
+  --rust2:#b84a1e;
+  --amber:#f5a04a;
+  --violet:#7c5cfc;
+  --rust-lt:rgba(217,95,46,0.1);
+  --muted:rgba(14,14,12,0.55);
+  --muted2:rgba(14,14,12,0.35);
+  --border:rgba(14,14,12,0.1);
+  --border2:rgba(14,14,12,0.18);
+  --d-muted:rgba(250,247,242,0.5);
+  --d-muted2:rgba(250,247,242,0.28);
+  --d-border:rgba(250,247,242,0.1);
+  --d-border2:rgba(250,247,242,0.16);
+  --font-d:'Bricolage Grotesque',sans-serif;
+  --font-b:'DM Sans',sans-serif;
+  --max:1160px;
+  --pad:120px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-b);font-size:17px;line-height:1.65;color:var(--ink);background:var(--bg);overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--rust);border-radius:4px;}
+
+/* TYPE — Bricolage reads beautifully at large sizes */
+h1{font-family:var(--font-d);font-size:clamp(44px,5.8vw,82px);font-weight:800;line-height:1.0;letter-spacing:-0.02em;}
+h2{font-family:var(--font-d);font-size:clamp(34px,4.2vw,60px);font-weight:700;line-height:1.05;letter-spacing:-0.02em;}
+h3{font-family:var(--font-d);font-size:clamp(17px,1.8vw,22px);font-weight:600;line-height:1.25;letter-spacing:-0.01em;}
+p{line-height:1.72;}
+.eyebrow{font-family:var(--font-d);font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--rust);}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;transition:all 0.3s;}
+nav.scrolled{background:rgba(250,247,242,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-brand{font-family:var(--font-d);font-size:15px;font-weight:700;color:var(--bg);text-decoration:none;transition:color 0.3s;}
+nav.scrolled .nav-brand{color:var(--ink);}
+.nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none;}
+.nav-links a{font-family:var(--font-d);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,247,242,0.55);text-decoration:none;transition:color 0.2s;}
+nav.scrolled .nav-links a{color:var(--muted);}
+.nav-links a:hover,nav.scrolled .nav-links a:hover{color:var(--rust);}
+.nav-cta{font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--dark)!important;background:var(--bg);padding:10px 22px;border-radius:40px;text-decoration:none;transition:all 0.2s;}
+.nav-cta:hover{background:var(--rust);color:#fff!important;}
+nav.scrolled .nav-cta{background:var(--dark);color:var(--bg)!important;}
+nav.scrolled .nav-cta:hover{background:var(--rust);color:#fff!important;}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;width:40px;height:40px;padding:8px;border:1px solid rgba(250,247,242,0.2);border-radius:8px;background:transparent;}
+nav.scrolled .nav-hamburger{border-color:var(--border2);}
+.nav-hamburger span{display:block;width:20px;height:2px;background:var(--bg);transition:all 0.25s ease;}
+nav.scrolled .nav-hamburger span{background:var(--ink);}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(250,247,242,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:198;padding:1.5rem 48px 2rem;flex-direction:column;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:var(--font-d);font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:1rem 0;border-bottom:1px solid var(--border);display:block;}
+.mobile-menu a:last-child{margin-top:1rem;border:none;background:var(--dark);color:var(--bg);padding:1rem 1.5rem;text-align:center;border-radius:40px;}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-d);font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;padding:16px 32px;border-radius:40px;transition:all 0.25s;cursor:pointer;border:none;}
+.btn-fire{background:linear-gradient(135deg,var(--rust),var(--amber));color:#fff;box-shadow:0 4px 24px rgba(217,95,46,0.3);}
+.btn-fire:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(217,95,46,0.45);}
+.btn-dark{background:var(--dark);color:var(--bg);}
+.btn-dark:hover{background:var(--rust);}
+.btn-ghost-dk{background:transparent;color:var(--ink);border:1.5px solid var(--border2);}
+.btn-ghost-dk:hover{border-color:var(--rust);color:var(--rust);}
+.btn-ghost-lt{background:transparent;color:var(--bg);border:1.5px solid var(--d-border2);}
+.btn-ghost-lt:hover{border-color:rgba(250,247,242,0.5);}
+.btn-paper{background:var(--bg);color:var(--dark);}
+.btn-paper:hover{background:var(--rust);color:#fff;}
+
+/* HERO */
+.hero{background:var(--dark);min-height:100vh;display:flex;align-items:flex-end;padding-top:64px;padding-bottom:80px;position:relative;overflow:hidden;}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;animation:drift 14s ease-in-out infinite;}
+.orb-1{width:700px;height:700px;background:radial-gradient(circle,rgba(217,95,46,0.22),transparent 68%);top:-20%;right:-8%;animation-delay:0s;}
+.orb-2{width:450px;height:450px;background:radial-gradient(circle,rgba(124,92,252,0.15),transparent 68%);bottom:-5%;left:-6%;animation-delay:-6s;}
+.orb-3{width:350px;height:350px;background:radial-gradient(circle,rgba(245,160,74,0.1),transparent 68%);top:35%;right:18%;animation-delay:-10s;}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(25px,-18px) scale(1.04);}66%{transform:translate(-18px,25px) scale(0.96);};}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(250,247,242,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(250,247,242,0.03) 1px,transparent 1px);background-size:80px 80px;pointer-events:none;}
+.hero-inner{max-width:var(--max);margin:0 auto;padding:0 48px;position:relative;z-index:2;width:100%;}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(217,95,46,0.12);border:1px solid rgba(217,95,46,0.28);border-radius:40px;padding:8px 18px;margin-bottom:44px;}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--rust);box-shadow:0 0 10px var(--rust);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.35;};}
+.hero-badge-text{font-family:var(--font-d);font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(217,95,46,0.9);}
+.hero h1{color:var(--bg);max-width:18ch;margin-bottom:2rem;}
+.hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--rust),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:19px;color:var(--d-muted);max-width:50ch;margin-bottom:3rem;line-height:1.65;font-weight:300;}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:6rem;}
+.hero-stats{border-top:1px solid var(--d-border);padding-top:2rem;display:grid;grid-template-columns:repeat(3,auto) 1fr;gap:0;}
+.hero-stat{padding-right:3rem;border-right:1px solid var(--d-border);margin-right:3rem;}
+.hero-stat:last-child{border-right:none;margin-right:0;padding-right:0;}
+.hero-stat-label{font-family:var(--font-d);font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--d-muted2);margin-bottom:0.35rem;}
+.hero-stat-val{font-family:var(--font-d);font-size:13px;color:var(--d-muted);line-height:1.4;}
+
+/* MARQUEE */
+.marquee-wrap{background:var(--rust-lt);border-top:1px solid rgba(217,95,46,0.18);border-bottom:1px solid rgba(217,95,46,0.18);padding:13px 0;overflow:hidden;}
+.marquee-track{display:flex;animation:marquee 30s linear infinite;width:max-content;}
+.marquee-item{font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(217,95,46,0.75);padding:0 36px;white-space:nowrap;}
+.marquee-item span{color:var(--rust);margin-right:36px;}
+@keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);};}
+
+/* MANIFESTO */
+.manifesto{background:var(--bg);padding:var(--pad) 0;}
+.manifesto-inner{max-width:var(--max);margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.manifesto-left .eyebrow{margin-bottom:1.75rem;display:block;}
+.manifesto-left h2{color:var(--ink);}
+.manifesto-right p{color:var(--muted);font-size:17px;margin-bottom:1.5rem;}
+.manifesto-right p strong{color:var(--ink);font-weight:500;}
+.manifesto-divider{width:40px;height:3px;background:linear-gradient(90deg,var(--rust),var(--amber));border-radius:4px;margin:2rem 0;}
+.manifesto-quote{font-family:var(--font-d);font-size:19px;font-weight:600;color:var(--ink);line-height:1.45;border-left:3px solid var(--rust);padding-left:1.5rem;margin-top:2.5rem;}
+
+/* PAIN */
+.pain{background:var(--bg2);padding:var(--pad) 0;}
+.pain-inner{max-width:var(--max);margin:0 auto;padding:0 48px;}
+.pain-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:72px;}
+.pain-header .eyebrow{margin-bottom:1.5rem;display:block;}
+.pain-header h2{color:var(--ink);}
+.pain-header p{color:var(--muted);font-size:17px;}
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.pain-card{background:var(--bg);border:1px solid var(--border);padding:44px;transition:all 0.3s;position:relative;overflow:hidden;}
+.pain-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:3px;background:linear-gradient(90deg,var(--rust),var(--amber));transition:width 0.4s;}
+.pain-card:hover{box-shadow:0 8px 32px rgba(14,14,12,0.07);}
+.pain-card:hover::after{width:100%;}
+.pain-num{font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:0.14em;color:var(--rust);margin-bottom:1.25rem;}
+.pain-card h3{color:var(--ink);margin-bottom:0.9rem;font-size:19px;}
+.pain-card p{color:var(--muted);font-size:15px;line-height:1.65;}
+
+/* METHOD — deliverables mapped to pain points */
+.method{background:var(--bg3);padding:var(--pad) 0;}
+.method-inner{max-width:var(--max);margin:0 auto;padding:0 48px;}
+.method-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:80px;}
+.method-header .eyebrow{margin-bottom:1.5rem;display:block;}
+.method-header h2{color:var(--ink);}
+.method-header p{color:var(--muted);font-size:17px;}
+.method-phases{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--border2);background:var(--bg);}
+.phase{padding:36px 28px;border-right:1px solid var(--border);position:relative;overflow:hidden;transition:background 0.3s;}
+.phase:last-child{border-right:none;}
+.phase::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rust),var(--amber));transform:scaleX(0);transform-origin:left;transition:transform 0.35s;}
+.phase:hover{background:rgba(217,95,46,0.03);}
+.phase:hover::after{transform:scaleX(1);}
+.phase-num{font-family:var(--font-d);font-size:34px;font-weight:800;color:rgba(14,14,12,0.06);line-height:1;margin-bottom:1.5rem;}
+.phase h3{font-size:14px;color:var(--ink);margin-bottom:0.5rem;font-weight:700;}
+.phase p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:1rem;}
+.phase-output{font-family:var(--font-d);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--rust);margin-bottom:0.4rem;}
+.phase-pain-tag{display:inline-block;font-family:var(--font-d);font-size:9px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(217,95,46,0.5);border:1px solid rgba(217,95,46,0.2);border-radius:20px;padding:3px 8px;margin-top:0.4rem;}
+
+/* HOW IT WORKS */
+.how{background:var(--dark);padding:var(--pad) 0;position:relative;overflow:hidden;}
+.how::before{content:'';position:absolute;top:-200px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(217,95,46,0.09),transparent 65%);pointer-events:none;}
+.how::after{content:'';position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(124,92,252,0.07),transparent 65%);pointer-events:none;}
+.how-inner{max-width:var(--max);margin:0 auto;padding:0 48px;position:relative;z-index:1;}
+.how-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:80px;}
+.how-header .eyebrow{color:rgba(217,95,46,0.8);margin-bottom:1.5rem;display:block;}
+.how-header h2{color:var(--bg);}
+.how-header p{color:var(--d-muted);font-size:17px;}
+.how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:72px;}
+.how-step{background:rgba(250,247,242,0.04);border:1px solid var(--d-border);padding:40px 32px;transition:all 0.3s;}
+.how-step:hover{background:rgba(250,247,242,0.07);border-color:rgba(217,95,46,0.2);}
+.how-step-num{font-family:var(--font-d);font-size:40px;font-weight:800;background:linear-gradient(135deg,var(--rust),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:1.5rem;}
+.how-step h3{color:var(--bg);font-size:18px;margin-bottom:0.75rem;}
+.how-step p{color:var(--d-muted);font-size:14px;line-height:1.65;}
+.how-cta-block{background:rgba(217,95,46,0.07);border:1px solid rgba(217,95,46,0.2);padding:52px 56px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;}
+.how-cta-block h3{color:var(--bg);font-size:24px;margin-bottom:0.75rem;}
+.how-cta-block p{color:var(--d-muted);font-size:16px;line-height:1.65;}
+.how-cta-right{display:flex;flex-direction:column;gap:12px;align-items:flex-end;flex-shrink:0;}
+.how-note{font-family:var(--font-d);font-size:11px;font-weight:600;letter-spacing:0.08em;color:var(--d-muted2);text-align:right;}
+
+/* FOR WHO */
+.for-who{background:var(--bg);padding:var(--pad) 0;}
+.for-who-inner{max-width:var(--max);margin:0 auto;padding:0 48px;}
+.for-who-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-bottom:64px;}
+.for-who-header .eyebrow{margin-bottom:1.5rem;display:block;}
+.for-who-header h2{color:var(--ink);}
+.for-who-header p{color:var(--muted);font-size:17px;margin-top:0.75rem;}
+.fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:2px;}
+.fit-card{background:var(--bg2);padding:36px;transition:all 0.25s;position:relative;overflow:hidden;}
+.fit-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--rust),var(--amber));transition:width 0.4s;}
+.fit-card:hover::after{width:100%;}
+.fit-num{font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:0.14em;color:var(--rust);margin-bottom:0.9rem;}
+.fit-card h3{font-size:17px;color:var(--ink);margin-bottom:0.65rem;}
+.fit-card p{font-size:14px;color:var(--muted);line-height:1.65;}
+.not-for{background:var(--dark);padding:44px 52px;display:grid;grid-template-columns:1fr 2fr;gap:60px;align-items:start;margin-top:2px;}
+.not-for-list{list-style:none;}
+.not-for-list li{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--d-muted);padding:10px 0;border-bottom:1px solid var(--d-border);line-height:1.5;}
+.not-for-list li::before{content:'✕';color:rgba(217,95,46,0.55);font-size:10px;margin-top:3px;flex-shrink:0;}
+
+/* PROOF */
+.proof{background:var(--bg2);padding:var(--pad) 0;}
+.proof-inner{max-width:var(--max);margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start;}
+.proof-left .eyebrow{margin-bottom:2rem;display:block;}
+.proof-left h2{color:var(--ink);margin-bottom:2rem;font-size:clamp(30px,3.8vw,50px);}
+.proof-left p{color:var(--muted);font-size:16px;margin-bottom:1.25rem;}
+.proof-left p strong{color:var(--ink);font-weight:500;}
+.proof-creds{margin-top:3rem;display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.proof-cred{background:var(--bg);border:1px solid var(--border);padding:22px 26px;transition:border-color 0.25s;}
+.proof-cred:hover{border-color:rgba(217,95,46,0.3);}
+.proof-cred-val{font-family:var(--font-d);font-size:26px;font-weight:800;color:var(--ink);letter-spacing:-0.02em;margin-bottom:0.2rem;}
+.proof-cred-label{font-size:12px;color:var(--muted2);line-height:1.4;}
+.proof-pullquote{font-family:var(--font-d);font-size:clamp(20px,2.8vw,32px);font-weight:700;color:var(--ink);line-height:1.28;letter-spacing:-0.02em;margin-bottom:2rem;}
+.proof-pullquote em{font-style:normal;background:linear-gradient(120deg,var(--rust),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.proof-detail{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:1.25rem;}
+
+/* FAQ */
+.faq{background:var(--bg);padding:var(--pad) 0;}
+.faq-inner{max-width:var(--max);margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start;}
+.faq-left .eyebrow{margin-bottom:1.5rem;display:block;}
+.faq-left h2{color:var(--ink);font-size:clamp(26px,3.2vw,42px);margin-bottom:1.5rem;}
+.faq-left p{color:var(--muted);font-size:15px;margin-bottom:2rem;}
+.faq-list{border-top:1px solid var(--border2);}
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 0;cursor:pointer;font-family:var(--font-d);font-size:15px;font-weight:600;color:var(--ink);list-style:none;user-select:none;}
+.faq-q::-webkit-details-marker{display:none;}
+.faq-icon{width:26px;height:26px;border:1.5px solid var(--border2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;transition:all 0.3s;color:var(--muted);}
+details[open] .faq-icon{transform:rotate(45deg);background:var(--rust);border-color:var(--rust);color:#fff;}
+.faq-a{padding:0 0 1.5rem;font-size:15px;color:var(--muted);line-height:1.7;}
+
+/* CONTACT + QUIZ */
+.contact{background:var(--dark2);padding:var(--pad) 0;position:relative;overflow:hidden;}
+.contact::before{content:'';position:absolute;top:-150px;left:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(217,95,46,0.1),transparent 65%);pointer-events:none;}
+.contact::after{content:'';position:absolute;bottom:-200px;right:-150px;width:550px;height:550px;background:radial-gradient(circle,rgba(124,92,252,0.08),transparent 65%);pointer-events:none;}
+.contact-inner{max-width:var(--max);margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start;position:relative;z-index:1;}
+.contact-left .eyebrow{margin-bottom:2rem;display:block;color:rgba(217,95,46,0.8);}
+.contact-left h2{color:var(--bg);margin-bottom:1.5rem;font-size:clamp(30px,4vw,52px);}
+.contact-left p{color:var(--d-muted);font-size:16px;margin-bottom:1.5rem;line-height:1.7;}
+.contact-promises{list-style:none;margin-top:2rem;}
+.contact-promises li{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--d-muted);padding:12px 0;border-bottom:1px solid var(--d-border);line-height:1.5;}
+.contact-promises li::before{content:'✓';color:var(--rust);font-family:var(--font-d);font-weight:700;flex-shrink:0;}
+.contact-capacity{font-family:var(--font-d);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--d-muted2);margin-top:1.5rem;display:flex;align-items:center;gap:8px;}
+.contact-capacity::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--rust);box-shadow:0 0 8px var(--rust);flex-shrink:0;animation:pulse 2s ease-in-out infinite;}
+
+/* QUIZ */
+.quiz-wrap{background:rgba(250,247,242,0.05);border:1px solid var(--d-border2);border-radius:16px;padding:40px;overflow:hidden;}
+.quiz-progress{height:3px;background:rgba(250,247,242,0.1);border-radius:4px;margin-bottom:32px;overflow:hidden;}
+.quiz-progress-bar{height:100%;background:linear-gradient(90deg,var(--rust),var(--amber));border-radius:4px;transition:width 0.4s ease;}
+.quiz-step{display:none;}
+.quiz-step.active{display:block;}
+.quiz-step-label{font-family:var(--font-d);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--d-muted2);margin-bottom:0.75rem;}
+.quiz-step h3{font-family:var(--font-d);font-size:20px;font-weight:700;color:var(--bg);margin-bottom:1.75rem;letter-spacing:-0.01em;line-height:1.3;}
+.quiz-options{display:flex;flex-direction:column;gap:10px;}
+.quiz-option{display:flex;align-items:center;gap:14px;background:rgba(250,247,242,0.05);border:1.5px solid var(--d-border);border-radius:10px;padding:14px 18px;cursor:pointer;transition:all 0.2s;font-family:var(--font-b);font-size:15px;color:rgba(250,247,242,0.65);text-align:left;}
+.quiz-option:hover{background:rgba(217,95,46,0.08);border-color:rgba(217,95,46,0.3);color:var(--bg);}
+.quiz-option.selected{background:rgba(217,95,46,0.12);border-color:rgba(217,95,46,0.55);color:var(--bg);}
+.quiz-option-icon{width:32px;height:32px;border-radius:8px;background:rgba(250,247,242,0.07);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;transition:background 0.2s;}
+.quiz-option.selected .quiz-option-icon{background:rgba(217,95,46,0.2);}
+.quiz-nav{display:flex;gap:12px;margin-top:24px;align-items:center;}
+.quiz-back{font-family:var(--font-d);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--d-muted2);cursor:pointer;background:none;border:none;padding:0;transition:color 0.2s;}
+.quiz-back:hover{color:var(--bg);}
+.quiz-next{font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,var(--rust),var(--amber));border:none;border-radius:40px;padding:14px 28px;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 20px rgba(217,95,46,0.25);}
+.quiz-next:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(217,95,46,0.4);}
+.quiz-next:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
+.quiz-fields{display:flex;flex-direction:column;gap:16px;margin-bottom:8px;}
+.quiz-field{display:flex;flex-direction:column;gap:8px;}
+.quiz-field-label{font-family:var(--font-d);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--d-muted2);}
+.quiz-field input{background:rgba(250,247,242,0.07);border:1.5px solid var(--d-border2);border-radius:10px;padding:14px 18px;font-family:var(--font-b);font-size:15px;color:var(--bg);outline:none;width:100%;transition:all 0.2s;}
+.quiz-field input::placeholder{color:rgba(250,247,242,0.2);}
+.quiz-field input:focus{border-color:rgba(217,95,46,0.5);background:rgba(250,247,242,0.1);box-shadow:0 0 0 3px rgba(217,95,46,0.08);}
+.quiz-confirm{text-align:center;padding:16px 0 24px;}
+.quiz-confirm-icon{font-size:40px;margin-bottom:1rem;}
+.quiz-confirm h3{font-family:var(--font-d);font-size:22px;font-weight:700;color:var(--bg);margin-bottom:0.75rem;}
+.quiz-confirm p{color:var(--d-muted);font-size:15px;margin-bottom:2rem;line-height:1.65;}
+
+/* FOOTER */
+footer{background:var(--dark);border-top:1px solid var(--d-border);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-brand{font-family:var(--font-d);font-size:13px;font-weight:700;color:var(--d-muted2);text-decoration:none;}
+.footer-right{font-size:12px;color:rgba(250,247,242,0.2);}
+.footer-right a{color:inherit;text-decoration:none;transition:color 0.2s;}
+.footer-right a:hover{color:var(--rust);}
+
+/* FADE-UP */
+.fade-up{opacity:1;transform:translateY(0);}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .method-phases{grid-template-columns:1fr 1fr;}
+  .phase{border-bottom:1px solid var(--border);}
+  .phase:nth-child(even){border-right:none;}
+  .how-steps{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:860px){
+  :root{--pad:80px;}
+  .hero-inner,.manifesto-inner,.pain-inner,.method-inner,.how-inner,.for-who-inner,.proof-inner,.faq-inner,.contact-inner{padding:0 24px;}
+  nav{padding:0 24px;}footer{padding:24px;}
+  .mobile-menu{padding:1.5rem 24px 2rem;}
+  .nav-links,.nav-cta{display:none;}.nav-hamburger{display:flex;}
+  .hero-stats{grid-template-columns:1fr 1fr;gap:1.5rem;}
+  .hero-stat{border-right:none;padding-right:0;margin-right:0;}
+  .manifesto-inner,.pain-header,.method-header,.how-header,.for-who-header{grid-template-columns:1fr;gap:32px;}
+  .pain-grid,.fit-grid{grid-template-columns:1fr;}
+  .method-phases,.how-steps{grid-template-columns:1fr;}
+  .phase{border-right:none!important;}
+  .how-cta-block{grid-template-columns:1fr;gap:24px;}
+  .how-cta-right{align-items:flex-start;}
+  .not-for{grid-template-columns:1fr;gap:28px;padding:36px 24px;}
+  .proof-inner,.contact-inner,.faq-inner{grid-template-columns:1fr;gap:56px;}
+  .proof-creds{grid-template-columns:1fr 1fr;}
+  .quiz-wrap{padding:28px 24px;}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="nav-brand" href="#">Dylan Lennon</a>
+  <ul class="nav-links">
+    <li><a href="#method">The Method</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#fit">Who It's For</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Work Together</a>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#method">The Method</a>
+  <a href="#how">How It Works</a>
+  <a href="#fit">Who It's For</a>
+  <a href="#faq">FAQ</a>
+  <a href="#contact">Work Together</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      <span class="hero-badge-text">Fractional Ops Architecture &middot; Founder Independence Method&#x2122;</span>
+    </div>
+    <h1>You&#8217;re the reason<br>your business works.<br>That&#8217;s the <em>problem.</em></h1>
+    <p class="hero-sub">You have a team, real revenue, and something genuinely worth protecting. But every decision still routes through you &#8212; and you know it. I build the systems that change that, without turning your business into something it&#8217;s not.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-fire">Start the Conversation &#x2192;</a>
+      <a href="#method" class="btn btn-ghost-lt">The Method</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-label">The Approach</div><div class="hero-stat-val">Builder-Practitioner.<br>Not a consultant &#8212; a founder.</div></div>
+      <div class="hero-stat"><div class="hero-stat-label">The Community</div><div class="hero-stat-val">10,000+ founders &amp; operators.<br>Real signal on what&#8217;s breaking.</div></div>
+      <div class="hero-stat"><div class="hero-stat-label">The Work</div><div class="hero-stat-val">Construction, not consulting.<br>Built alongside you, not handed down.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item"><span>&#9679;</span>Culture-First Operations</span>
+    <span class="marquee-item"><span>&#9679;</span>Founder Independence Method&#x2122;</span>
+    <span class="marquee-item"><span>&#9679;</span>Built Different, Run Different</span>
+    <span class="marquee-item"><span>&#9679;</span>Systems That Fit Your Business</span>
+    <span class="marquee-item"><span>&#9679;</span>Not Corporate. Not Cookie-Cutter.</span>
+    <span class="marquee-item"><span>&#9679;</span>Scale Without Losing the Soul</span>
+    <span class="marquee-item"><span>&#9679;</span>Culture-First Operations</span>
+    <span class="marquee-item"><span>&#9679;</span>Founder Independence Method&#x2122;</span>
+    <span class="marquee-item"><span>&#9679;</span>Built Different, Run Different</span>
+    <span class="marquee-item"><span>&#9679;</span>Systems That Fit Your Business</span>
+    <span class="marquee-item"><span>&#9679;</span>Not Corporate. Not Cookie-Cutter.</span>
+    <span class="marquee-item"><span>&#9679;</span>Scale Without Losing the Soul</span>
+  </div>
+</div>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="manifesto-inner">
+    <div class="manifesto-left fade-up">
+      <span class="eyebrow">The Premise</span>
+      <h2>Systems don&#8217;t kill culture.<br>Bad systems do.</h2>
+    </div>
+    <div class="manifesto-right fade-up">
+      <p>Most ops consultants come from corporate. They hand you a playbook built for a company that looks nothing like yours &#8212; and wonder why it doesn&#8217;t fit. <strong>Your business isn&#8217;t a template. It shouldn&#8217;t run like one.</strong></p>
+      <p>The culture you&#8217;ve built &#8212; the tight-knit team, the organic relationships, the way your clients feel when they work with you &#8212; that&#8217;s not a liability to work around. <strong>That&#8217;s the thing worth protecting.</strong></p>
+      <p>My job is to build the operational layer underneath your culture. The systems, the rhythms, the infrastructure that lets your business run like itself &#8212; just without you being the only thing holding it together.</p>
+      <div class="manifesto-divider"></div>
+      <p>I&#8217;ve been the founder who couldn&#8217;t take a vacation. Who hired people only to become their full-time manager. I know what it costs to grow without infrastructure. And I know what it looks like when you get it right.</p>
+      <blockquote class="manifesto-quote">&#8220;The goal isn&#8217;t to make your business run like a corporation. It&#8217;s to make it run like itself &#8212; without you in every room.&#8221;</blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="pain">
+  <div class="pain-inner">
+    <div class="pain-header fade-up">
+      <div>
+        <span class="eyebrow">The Patterns</span>
+        <h2>What it looks like when a founder-led business outgrows itself</h2>
+      </div>
+      <p>These aren&#8217;t signs you built something wrong. They&#8217;re signs you built something real &#8212; and it&#8217;s ready for the next layer.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card fade-up">
+        <div class="pain-num">Pattern 01</div>
+        <h3>Every decision still routes through you</h3>
+        <p>You have a team. But the judgment calls, the approvals, the anything-unusual still lands on your desk. You&#8217;re not a founder anymore &#8212; you&#8217;re a system of one.</p>
+      </div>
+      <div class="pain-card fade-up">
+        <div class="pain-num">Pattern 02</div>
+        <h3>The culture is strong but fragile</h3>
+        <p>What makes your team special lives in relationships, vibes, and your presence. The moment you step back or add headcount &#8212; it starts to slip. Because nothing was ever written down.</p>
+      </div>
+      <div class="pain-card fade-up">
+        <div class="pain-num">Pattern 03</div>
+        <h3>Hiring makes you busier, not freer</h3>
+        <p>Every person you bring on needs you to orient them, answer their questions, make the calls they can&#8217;t yet make. Without a system underneath them, more headcount just means more to manage.</p>
+      </div>
+      <div class="pain-card fade-up">
+        <div class="pain-num">Pattern 04</div>
+        <h3>The whole thing lives in your head</h3>
+        <p>No playbooks. No documented process. The business runs on your memory, your instincts, your relationships. You can&#8217;t step back because no one else knows how it works.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD — deliverables explicitly traced to pain points -->
+<section class="method" id="method">
+  <div class="method-inner">
+    <div class="method-header fade-up">
+      <div>
+        <span class="eyebrow">Founder Independence Method&#x2122;</span>
+        <h2>Five phases. Every deliverable earns its place.</h2>
+      </div>
+      <p>Nothing generic gets dropped on your business. Every phase produces something specific that solves a specific problem &#8212; mapped to what&#8217;s actually breaking.</p>
+    </div>
+    <div class="method-phases">
+
+      <!-- Phase 01: solves "lives in your head" + "money leaking" -->
+      <div class="phase fade-up">
+        <div class="phase-num">01</div>
+        <h3>Reveal</h3>
+        <p>Full diagnostic. We audit revenue by source, where your time actually goes, how decisions flow, and where margin leaks. We map what you actually have &#8212; not what you think you have.</p>
+        <div class="phase-output">&#x2192; Business Audit Report</div>
+        <div class="phase-output">&#x2192; Revenue Leak Analysis</div>
+        <div class="phase-output">&#x2192; Decision Flow Map</div>
+        <span class="phase-pain-tag">Fixes: leaking money &#43; everything in your head</span>
+      </div>
+
+      <!-- Phase 02: solves "decisions route through you" -->
+      <div class="phase fade-up">
+        <div class="phase-num">02</div>
+        <h3>Architect</h3>
+        <p>Design the org, define every role, and clarify ownership of outcomes. Who decides what. Who owns what. Where authority actually lives &#8212; built on paper before anything gets touched.</p>
+        <div class="phase-output">&#x2192; Org Chart + Role Map</div>
+        <div class="phase-output">&#x2192; Decision Rights Framework</div>
+        <div class="phase-output">&#x2192; Accountability Matrix</div>
+        <span class="phase-pain-tag">Fixes: decisions routing through you</span>
+      </div>
+
+      <!-- Phase 03: solves "lives in head" + "culture fragile" -->
+      <div class="phase fade-up">
+        <div class="phase-num">03</div>
+        <h3>Engineer</h3>
+        <p>Build the actual operating system: weekly rhythms, SOPs, communication protocols &#8212; and critically, a Culture + Operating Principles doc that captures what makes your business yours so it survives growth.</p>
+        <div class="phase-output">&#x2192; Full Ops Playbook + SOPs</div>
+        <div class="phase-output">&#x2192; Culture &amp; Operating Principles Doc</div>
+        <div class="phase-output">&#x2192; Team Communication Protocols</div>
+        <span class="phase-pain-tag">Fixes: culture fragility &#43; tribal knowledge</span>
+      </div>
+
+      <!-- Phase 04: solves "hiring creates chaos" -->
+      <div class="phase fade-up">
+        <div class="phase-num">04</div>
+        <h3>Install</h3>
+        <p>Train your team on the system. Embed the rhythms. Activate the metrics dashboard. Build hiring profiles so the next person you bring on slots into a real structure &#8212; not into you.</p>
+        <div class="phase-output">&#x2192; Team Training + Onboarding</div>
+        <div class="phase-output">&#x2192; KPI Dashboard Setup</div>
+        <div class="phase-output">&#x2192; Hiring Profiles + Onboarding Flow</div>
+        <span class="phase-pain-tag">Fixes: hiring creating chaos</span>
+      </div>
+
+      <!-- Phase 05: ongoing -->
+      <div class="phase fade-up">
+        <div class="phase-num">05</div>
+        <h3>Optimize</h3>
+        <p>Monthly retainer. We review KPIs, troubleshoot friction, evolve the system as you grow, and run hiring support as needed. The architecture is never done &#8212; it scales with you.</p>
+        <div class="phase-output">&#x2192; Monthly Ops Review Session</div>
+        <div class="phase-output">&#x2192; Weekly Async Loom Check-in</div>
+        <div class="phase-output">&#x2192; SOP + System Evolution</div>
+        <div class="phase-output">&#x2192; Hiring Support (ongoing)</div>
+        <span class="phase-pain-tag">Ongoing: all four patterns</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="how-inner">
+    <div class="how-header fade-up">
+      <div>
+        <span class="eyebrow">How It Works</span>
+        <h2>No menu. No pricing page.<br>Just a real conversation.</h2>
+      </div>
+      <p style="color:var(--d-muted);">Every business is different. Before I scope anything, I want to understand what you&#8217;re actually building &#8212; and whether I&#8217;m the right person to help.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step fade-up">
+        <div class="how-step-num">01</div>
+        <h3>Tell me about your business</h3>
+        <p>Answer 4 quick questions about where you are and what&#8217;s breaking. Takes 2 minutes. Helps me show up informed.</p>
+      </div>
+      <div class="how-step fade-up">
+        <div class="how-step-num">02</div>
+        <h3>Book a 15-minute intro call</h3>
+        <p>No pitch deck. No proposal theater. Just a direct conversation about your business and whether there&#8217;s a fit.</p>
+      </div>
+      <div class="how-step fade-up">
+        <div class="how-step-num">03</div>
+        <h3>Get a custom proposal</h3>
+        <p>If there&#8217;s fit, I&#8217;ll outline exactly how I&#8217;d approach your business &#8212; scoped to what you actually need, not a preset package.</p>
+      </div>
+      <div class="how-step fade-up">
+        <div class="how-step-num">04</div>
+        <h3>We build</h3>
+        <p>Diagnostic first. Then design, engineer, and install an operating system that fits your business and protects what makes it yours.</p>
+      </div>
+    </div>
+    <div class="how-cta-block fade-up">
+      <div>
+        <h3>Ready to start?</h3>
+        <p>Takes 2 minutes. I&#8217;ll read your answers before our call so we can skip the intro and get straight to what matters.</p>
+      </div>
+      <div class="how-cta-right">
+        <a href="#contact" class="btn btn-fire">Answer 4 Questions &#x2192;</a>
+        <span class="how-note">Then book your 15-min call</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHO -->
+<section class="for-who" id="fit">
+  <div class="for-who-inner">
+    <div class="for-who-header fade-up">
+      <div><span class="eyebrow">Fit</span><h2>Built for founders building something real</h2></div>
+      <p>The industry matters less than the pattern. I work with a small number of clients &#8212; only when there&#8217;s genuine fit.</p>
+    </div>
+    <div class="fit-grid">
+      <div class="fit-card fade-up"><div class="fit-num">01</div><h3>You built something with soul &#8212; and you&#8217;re terrified systems will kill it</h3><p>Your team has a culture. Your clients feel it. You want ops that fit the way your company actually works &#8212; not a generic playbook dropped on top of it.</p></div>
+      <div class="fit-card fade-up"><div class="fit-num">02</div><h3>You&#8217;re growing fast enough that the old way is starting to break</h3><p>What worked at 3 people doesn&#8217;t work at 8. Communication breaks down, accountability gets fuzzy. You can feel it &#8212; but don&#8217;t know what to do about it.</p></div>
+      <div class="fit-card fade-up"><div class="fit-num">03</div><h3>You have real revenue but you&#8217;re still the machine</h3><p>You have a team, clients, and momentum. But nothing runs without your presence. You can&#8217;t take a real vacation. You can&#8217;t delegate without following up.</p></div>
+      <div class="fit-card fade-up"><div class="fit-num">04</div><h3>You know money is leaking but can&#8217;t find exactly where</h3><p>Follow-up falls through the cracks. Pricing doesn&#8217;t hold. Client experience is inconsistent. These aren&#8217;t sales problems &#8212; they&#8217;re ops problems. And they&#8217;re findable.</p></div>
+    </div>
+    <div class="not-for fade-up">
+      <div>
+        <span class="eyebrow" style="color:rgba(217,95,46,0.75);">Honestly</span>
+        <h3 style="color:var(--bg);margin-top:0.75rem;font-size:19px;">This isn&#8217;t for everyone</h3>
+      </div>
+      <ul class="not-for-list">
+        <li>Pre-revenue or very early stage with no team yet</li>
+        <li>Looking for an executive assistant or inbox manager</li>
+        <li>Not willing to let anything change about how you currently operate</li>
+        <li>Looking for a strategy doc, not an actual built system</li>
+        <li>Expecting transformation without a full engagement</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof">
+  <div class="proof-inner">
+    <div class="proof-left fade-up">
+      <span class="eyebrow">The Background</span>
+      <h2>I&#8217;ve been the founder in the trap.</h2>
+      <p>Most fractional operators come from corporate. They&#8217;ve read the playbooks, done the certifications, and managed other people&#8217;s messes. <strong>They&#8217;ve never been the founder who couldn&#8217;t take a vacation because the business would fall apart.</strong></p>
+      <p>I have. I&#8217;m a builder-practitioner &#8212; someone who has lived the founder trap, felt the ceiling, and built real systems to break through it.</p>
+      <p>The work I do isn&#8217;t consulting. It&#8217;s construction. We diagnose what&#8217;s broken, design what needs to exist, build it alongside you, and stay in the room until it holds.</p>
+      <div class="proof-creds">
+        <div class="proof-cred"><div class="proof-cred-val">10K+</div><div class="proof-cred-label">Founders &amp; operators in my network</div></div>
+        <div class="proof-cred"><div class="proof-cred-val">$35M+</div><div class="proof-cred-label">Personal business production</div></div>
+        <div class="proof-cred"><div class="proof-cred-val">PhD</div><div class="proof-cred-label">Systems science &middot; Postdoc, Harvard</div></div>
+        <div class="proof-cred"><div class="proof-cred-val">Built</div><div class="proof-cred-label">Companies, communities &amp; operating systems from scratch</div></div>
+      </div>
+    </div>
+    <div class="proof-right fade-up">
+      <p class="proof-pullquote">The best operators aren&#8217;t the ones who read the business books. They&#8217;re the ones who felt the <em>pain</em>, built the fix, and lived in it long enough to know it actually works.</p>
+      <p class="proof-detail">I didn&#8217;t come up through McKinsey. I came up through building &#8212; real businesses, real teams, real mistakes. That&#8217;s what makes the systems I build different. They&#8217;re not theoretically sound. They&#8217;re battle-tested.</p>
+      <p class="proof-detail">My network spans 10,000+ founders and operators across industries &#8212; real-time signal on what&#8217;s breaking at every stage. Not a textbook. Actual pattern recognition from being embedded in the work.</p>
+      <p class="proof-detail">And because I keep my client roster intentionally small, you&#8217;re not getting a template. You&#8217;re getting full attention, full context, and a system that actually fits your business.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <div class="faq-left fade-up">
+      <span class="eyebrow">Common Questions</span>
+      <h2>Still have questions?</h2>
+      <p>Most things get answered in a 15-minute call. But here are the ones that come up most.</p>
+      <a href="#contact" class="btn btn-dark" style="margin-top:0.5rem;">Book a Call &#x2192;</a>
+    </div>
+    <div class="faq-list fade-up">
+      <details class="faq-item"><summary class="faq-q">Will this change the culture we&#8217;ve built?<div class="faq-icon">+</div></summary><p class="faq-a">This is the most important question &#8212; and the honest answer is: not if we do it right. The whole premise of this work is building operational infrastructure underneath your culture, not over it. In Phase 03, we actually produce a Culture + Operating Principles document &#8212; the unwritten rules, the values in practice, the way decisions actually get made &#8212; codified so they survive growth and new hires. Your culture doesn&#8217;t get flattened. It gets protected.</p></details>
+      <details class="faq-item"><summary class="faq-q">My business is pretty unique. Will a generic framework fit?<div class="faq-icon">+</div></summary><p class="faq-a">It won&#8217;t &#8212; which is why I don&#8217;t use one. The Founder Independence Method is a process, not a template. Every engagement starts with a full diagnostic of your specific business. Everything we build comes from that. I&#8217;ve worked with boutique service businesses, niche creative studios, tight-knit sales teams, and community-based companies. The pattern is always the same. The solution never is.</p></details>
+      <details class="faq-item"><summary class="faq-q">Why don&#8217;t you list pricing on the site?<div class="faq-icon">+</div></summary><p class="faq-a">Because the right scope depends entirely on what your business actually needs &#8212; and I can&#8217;t know that before we talk. A 5-person studio with a culture fragility problem needs something different than a 12-person agency where revenue is leaking and the founder is doing everything. Pricing after a conversation means you&#8217;re paying for what you actually need. Engagements are typically structured as a focused build followed by ongoing retainer support. We figure out the exact shape together.</p></details>
+      <details class="faq-item"><summary class="faq-q">What&#8217;s the difference between this and hiring a COO?<div class="faq-icon">+</div></summary><p class="faq-a">A full-time COO costs $150K&#8211;$250K/year, takes 3&#8211;6 months to ramp, and is a long-term employment commitment. A fractional arrangement gives you the same strategic thinking and systems design at a fraction of the cost, with no long-term commitment. You also get someone who has been a founder &#8212; not just a corporate exec &#8212; which changes the quality of the work entirely.</p></details>
+      <details class="faq-item"><summary class="faq-q">What kind of businesses do you work with?<div class="faq-icon">+</div></summary><p class="faq-a">Primarily service businesses &#8212; agencies, studios, consulting firms, sales-driven teams, and founder-led companies with recurring operations and a growing team. The industry matters less than the pattern: a founder who&#8217;s become the bottleneck, a team that can&#8217;t move without them, and a business that&#8217;s outgrown how it was built.</p></details>
+      <details class="faq-item"><summary class="faq-q">How long does it take to see results?<div class="faq-icon">+</div></summary><p class="faq-a">The diagnostic phase alone usually surfaces two or three things that can be fixed immediately &#8212; within the first two weeks. The full build takes 30 days. Most founders start feeling the difference quickly: clearer decision-making, fewer things landing on their desk, team moving with more confidence. The deeper freedom &#8212; actually stepping back &#8212; typically comes in months two and three.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT + QUIZ -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left fade-up">
+      <span class="eyebrow">Let&#8217;s Build Something</span>
+      <h2>Tell me what you&#8217;re building.</h2>
+      <p>Answer four quick questions so I can show up to our call already understanding your business. Then pick a time that works.</p>
+      <ul class="contact-promises">
+        <li>Takes 2 minutes &#8212; I read every response before the call</li>
+        <li>15-minute intro call &#8212; no pitch, no pressure, just a real conversation</li>
+        <li>If there&#8217;s fit, I&#8217;ll outline exactly how I&#8217;d approach your specific business</li>
+        <li>If there&#8217;s no fit, I&#8217;ll say so and point you somewhere more useful</li>
+      </ul>
+      <div class="contact-capacity">Currently accepting new clients for Q2 2026</div>
+    </div>
+
+    <div class="contact-right fade-up">
+      <div class="quiz-wrap">
+        <div class="quiz-progress"><div class="quiz-progress-bar" id="quiz-bar" style="width:0%"></div></div>
+
+        <!-- Step 1 -->
+        <div class="quiz-step active" data-step="1">
+          <div class="quiz-step-label">Step 1 of 4</div>
+          <h3>What kind of business are you running?</h3>
+          <div class="quiz-options">
+            <button class="quiz-option" data-value="Agency or studio"><span class="quiz-option-icon">&#127912;</span>Agency or studio</button>
+            <button class="quiz-option" data-value="Consulting or coaching"><span class="quiz-option-icon">&#128172;</span>Consulting or coaching</button>
+            <button class="quiz-option" data-value="Service business with a team"><span class="quiz-option-icon">&#128101;</span>Service business with a team</button>
+            <button class="quiz-option" data-value="Sales-driven or CRM-based business"><span class="quiz-option-icon">&#128200;</span>Sales-driven or CRM-based business</button>
+            <button class="quiz-option" data-value="Something else — hard to categorize"><span class="quiz-option-icon">&#9889;</span>Something else &#8212; hard to categorize</button>
+          </div>
+          <div class="quiz-nav"><button class="quiz-next" id="next-1" disabled>Next &#x2192;</button></div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="quiz-step" data-step="2">
+          <div class="quiz-step-label">Step 2 of 4</div>
+          <h3>How big is your team right now?</h3>
+          <div class="quiz-options">
+            <button class="quiz-option" data-value="Just me (solo or 1:1)"><span class="quiz-option-icon">&#129485;</span>Just me or one key person</button>
+            <button class="quiz-option" data-value="2-5 people"><span class="quiz-option-icon">&#128105;&#8205;&#128187;</span>2&#8211;5 people</button>
+            <button class="quiz-option" data-value="6-15 people"><span class="quiz-option-icon">&#128106;</span>6&#8211;15 people</button>
+            <button class="quiz-option" data-value="15+ people"><span class="quiz-option-icon">&#127970;</span>15+ people</button>
+          </div>
+          <div class="quiz-nav"><button class="quiz-back" data-target="1">&#8592; Back</button><button class="quiz-next" id="next-2" disabled>Next &#x2192;</button></div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="quiz-step" data-step="3">
+          <div class="quiz-step-label">Step 3 of 4</div>
+          <h3>What&#8217;s the biggest friction right now?</h3>
+          <div class="quiz-options">
+            <button class="quiz-option" data-value="I'm still the bottleneck — everything routes through me"><span class="quiz-option-icon">&#129520;</span>I&#8217;m the bottleneck &#8212; everything routes through me</button>
+            <button class="quiz-option" data-value="The culture or vibe is slipping as we grow"><span class="quiz-option-icon">&#128139;</span>The culture or vibe is slipping as we grow</button>
+            <button class="quiz-option" data-value="Hiring is adding chaos, not capacity"><span class="quiz-option-icon">&#129300;</span>Hiring is adding chaos, not capacity</button>
+            <button class="quiz-option" data-value="I can feel money leaking but can't find exactly where"><span class="quiz-option-icon">&#128184;</span>I can feel money leaking but can&#8217;t find where</button>
+            <button class="quiz-option" data-value="Everything — it's all on fire"><span class="quiz-option-icon">&#128293;</span>Everything &#8212; it&#8217;s all on fire</button>
+          </div>
+          <div class="quiz-nav"><button class="quiz-back" data-target="2">&#8592; Back</button><button class="quiz-next" id="next-3" disabled>Next &#x2192;</button></div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="quiz-step" data-step="4">
+          <div class="quiz-step-label">Step 4 of 4</div>
+          <h3>What outcome matters most right now?</h3>
+          <div class="quiz-options">
+            <button class="quiz-option" data-value="Step back without things falling apart"><span class="quiz-option-icon">&#127774;</span>Step back without things falling apart</button>
+            <button class="quiz-option" data-value="Scale without losing what makes us unique"><span class="quiz-option-icon">&#127381;</span>Scale without losing what makes us unique</button>
+            <button class="quiz-option" data-value="Find and fix the revenue leaks"><span class="quiz-option-icon">&#128270;</span>Find and fix the revenue leaks</button>
+            <button class="quiz-option" data-value="Build a team that actually runs without me in every loop"><span class="quiz-option-icon">&#9881;</span>Build a team that runs without me in every loop</button>
+          </div>
+          <div class="quiz-nav"><button class="quiz-back" data-target="3">&#8592; Back</button><button class="quiz-next" id="next-4" disabled>Next &#x2192;</button></div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="quiz-step" data-step="5">
+          <div class="quiz-step-label">Almost there</div>
+          <h3>Where should I send the call link?</h3>
+          <div class="quiz-fields">
+            <div class="quiz-field"><label class="quiz-field-label" for="q-name">Your name</label><input type="text" id="q-name" placeholder="First name is fine" autocomplete="name"></div>
+            <div class="quiz-field"><label class="quiz-field-label" for="q-email">Email address</label><input type="email" id="q-email" placeholder="you@yourbusiness.com" autocomplete="email"></div>
+          </div>
+          <div class="quiz-nav"><button class="quiz-back" data-target="4">&#8592; Back</button><button class="quiz-next" id="next-5" disabled>Book My Call &#x2192;</button></div>
+        </div>
+
+        <!-- Step 6: Cal embed -->
+        <div class="quiz-step" data-step="6">
+          <div class="quiz-confirm">
+            <div class="quiz-confirm-icon">&#127775;</div>
+            <h3>Got it &#8212; pick a time below.</h3>
+            <p>I&#8217;ll read your answers before we talk so we can skip the intro and get straight to your business.</p>
+          </div>
+          <div id="cal-inline" style="min-height:500px;border-radius:12px;overflow:hidden;"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a class="footer-brand" href="#">Dylan Lennon &middot; Operations Architecture</a>
+  <div class="footer-right">Asheville, NC &middot; Founder Independence Method&#x2122; &middot; <a href="mailto:dylanjlennon@gmail.com">dylanjlennon@gmail.com</a></div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://app.cal.com/embed/embed.js" defer></script>
+<script>
+// Nav scroll
+(function(){var nav=document.getElementById('nav');window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40);},{passive:true});})();
+
+// Hamburger
+(function(){
+  var btn=document.getElementById('nav-hamburger'),menu=document.getElementById('mobile-menu');
+  if(!btn||!menu)return;
+  btn.addEventListener('click',function(e){e.stopPropagation();var o=menu.classList.toggle('open');btn.classList.toggle('open',o);btn.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':'';});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open');btn.classList.remove('open');btn.setAttribute('aria-expanded','false');document.body.style.overflow='';});});
+  document.addEventListener('click',function(e){if(menu.classList.contains('open')&&!btn.contains(e.target)&&!menu.contains(e.target)){menu.classList.remove('open');btn.classList.remove('open');btn.setAttribute('aria-expanded','false');document.body.style.overflow='';}});
+})();
+
+// Scroll reveal — only animate if JS runs
+(function(){
+  // Add animation class via JS so CSS-only fallback stays visible
+  var style=document.createElement('style');
+  style.textContent='.fade-up.will-animate{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease;}.fade-up.visible{opacity:1!important;transform:translateY(0)!important;}';
+  document.head.appendChild(style);
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.classList.add('visible');},i*70);obs.unobserve(e.target);}});},{threshold:0.08,rootMargin:'0px 0px -50px 0px'});
+  document.querySelectorAll('.fade-up').forEach(function(el){el.classList.add('will-animate');obs.observe(el);});
+})();
+
+// Quiz
+(function(){
+  var answers={};
+  var steps=5;
+  function progress(n){return Math.round(((n-1)/steps)*100)+'%';}
+  function show(n){
+    document.querySelectorAll('.quiz-step').forEach(function(s){s.classList.remove('active');});
+    var t=document.querySelector('[data-step="'+n+'"]');
+    if(t)t.classList.add('active');
+    document.getElementById('quiz-bar').style.width=(n>steps)?'100%':progress(n);
+  }
+  // Options
+  document.querySelectorAll('.quiz-options').forEach(function(g){
+    var step=g.closest('.quiz-step').dataset.step;
+    var nb=document.getElementById('next-'+step);
+    g.querySelectorAll('.quiz-option').forEach(function(o){
+      o.addEventListener('click',function(){
+        g.querySelectorAll('.quiz-option').forEach(function(x){x.classList.remove('selected');});
+        o.classList.add('selected');
+        answers['step'+step]=o.dataset.value;
+        if(nb)nb.disabled=false;
+      });
+    });
+  });
+  // Next 1-4
+  [1,2,3,4].forEach(function(n){var b=document.getElementById('next-'+n);if(b)b.addEventListener('click',function(){if(!b.disabled)show(n+1);});});
+  // Back
+  document.querySelectorAll('.quiz-back').forEach(function(b){b.addEventListener('click',function(){show(parseInt(b.dataset.target));});});
+  // Step 5 validation
+  var ni=document.getElementById('q-name'),ei=document.getElementById('q-email'),sb=document.getElementById('next-5');
+  function v5(){if(ni&&ei&&sb)sb.disabled=!(ni.value.trim().length>0&&ei.value.includes('@'));}
+  if(ni)ni.addEventListener('input',v5);
+  if(ei)ei.addEventListener('input',v5);
+  // Submit
+  if(sb){
+    sb.addEventListener('click',function(){
+      if(sb.disabled)return;
+      answers.name=ni.value.trim();
+      answers.email=ei.value.trim();
+      // Send to Formspree
+      fetch('https://formspree.io/f/xjkyogvb',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({
+          name:answers.name,email:answers.email,
+          business_type:answers.step1||'',team_size:answers.step2||'',
+          biggest_friction:answers.step3||'',desired_outcome:answers.step4||'',
+          _subject:'New intake: '+(answers.name||'someone')+' — dylanjlennon.github.io'
+        })
+      }).catch(function(){});
+      show(6);
+      // Cal embed
+      setTimeout(function(){
+        if(window.Cal){
+          Ca
